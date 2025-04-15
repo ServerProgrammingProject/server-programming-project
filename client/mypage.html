@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이페이지 - 실시간 경매 사이트</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="container navbar-content">
+      <h1 class="logo">실시간 경매</h1>
+      <div class="nav-links">
+        <a href="lobby.html" class="nav-link">경매장 로비</a>
+        <a href="index.html" class="nav-link">로그아웃</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 마이페이지 내용 -->
+  <div class="container page-content">
+    <h2 class="page-title">마이페이지</h2>
+
+    <div class="grid">
+      <!-- 사용자 정보 -->
+      <div class="card tilted-card">
+        <div class="card-body">
+          <h3 class="card-title">내 정보</h3>
+          <div class="form-group">
+            <p class="label">이메일</p>
+            <p id="userEmail">user@example.com</p>
+          </div>
+          <div class="form-group">
+            <p class="label">잔고</p>
+            <p id="userBalance" class="value">₩3,500,000</p>
+          </div>
+          <button class="btn btn-full mt-4">잔고 충전</button>
+        </div>
+      </div>
+
+      <!-- 보유 물품 -->
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">보유 물품</h3>
+          <div id="userItems">
+            <!-- 예시 물품 -->
+            <div class="item-row flex-between"
+              style="padding: 1rem; margin-bottom: 0.5rem; background-color: rgba(255,255,255,0.05); border-radius: 8px;">
+              <div>
+                <h4>빈티지 카메라</h4>
+                <p class="label">₩850,000</p>
+              </div>
+              <button class="btn btn-small">판매하기</button>
+            </div>
+            <div class="item-row flex-between"
+              style="padding: 1rem; margin-bottom: 0.5rem; background-color: rgba(255,255,255,0.05); border-radius: 8px;">
+              <div>
+                <h4>명품 시계</h4>
+                <p class="label">₩1,200,000</p>
+              </div>
+              <button class="btn btn-small">판매하기</button>
+            </div>
+            <div class="item-row flex-between"
+              style="padding: 1rem; background-color: rgba(255,255,255,0.05); border-radius: 8px;">
+              <div>
+                <h4>레트로 게임기</h4>
+                <p class="label">₩450,000</p>
+              </div>
+              <button class="btn btn-small">판매하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 거래 내역 -->
+    <div class="card" style="margin-top: 1.5rem;">
+      <div class="card-body">
+        <h3 class="card-title">거래 내역</h3>
+        <div style="overflow-x: auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>날짜</th>
+                <th>물품</th>
+                <th>금액</th>
+                <th>유형</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025-03-15</td>
+                <td>레트로 게임기</td>
+                <td>₩450,000</td>
+                <td><span class="badge badge-green">구매</span></td>
+              </tr>
+              <tr>
+                <td>2025-03-10</td>
+                <td>디지털 카메라</td>
+                <td>₩650,000</td>
+                <td><span class="badge badge-red">판매</span></td>
+              </tr>
+              <tr>
+                <td>2025-03-05</td>
+                <td>충전</td>
+                <td>₩1,000,000</td>
+                <td><span class="badge badge-blue">충전</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 사용자 정보 로드 (예시)
+    document.addEventListener('DOMContentLoaded', function () {
+      // 실제 구현 시에는 서버에서 데이터를 불러오는 로직이 필요합니다
+      const userEmail = 'user@example.com';
+      const userBalance = '₩3,500,000';
+
+      document.getElementById('userEmail').textContent = userEmail;
+      document.getElementById('userBalance').textContent = userBalance;
+    });
+  </script>
+</body>
+
+</html>

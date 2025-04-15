@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>경매장 - Auction Hub</title>
+  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <!-- 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="container navbar-content">
+      <div class="logo">Auction Hub</div>
+      <div class="nav-links">
+        <a href="lobby.html" class="nav-link">로비로 돌아가기</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 경매 타이머 -->
+  <div class="auction-timer">
+    <div class="container">
+      <div class="flex-between">
+        <div>남은 시간: <span id="timeRemaining">01:30:45</span></div>
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar" style="width: 60%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 경매 컨텐츠 -->
+  <div class="auction-container">
+    <div class="container auction-content">
+      <div class="auction-item">
+        <h2 class="page-title">앤티크 다이아몬드 반지</h2>
+        <img src="https://via.placeholder.com/300" alt="다이아몬드 반지" class="auction-item-image">
+
+        <div class="auction-price">
+          <span id="currentPrice">1,250,000</span>원
+        </div>
+
+        <div class="badge badge-blue">현재 입찰자: 김태호</div>
+
+        <div class="item-info">
+          <h3>상품 정보</h3>
+          <p class="item-description">
+            1920년대 제작된 앤티크 다이아몬드 반지입니다. 중앙에 2캐럿 다이아몬드가 세팅되어 있으며,
+            둘레에 작은 다이아몬드들이 장식되어 있습니다. 역사적 가치가 높은 희소성 있는 제품입니다.
+          </p>
+
+          <div class="flex-between">
+            <div>
+              <div class="label">시작가</div>
+              <div class="value">500,000원</div>
+            </div>
+            <div>
+              <div class="label">즉시 구매가</div>
+              <div class="value">3,000,000원</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="user-list">
+          <h3>입찰 현황</h3>
+          <div class="user-row">
+            <div class="user-avatar">김</div>
+            <div class="user-name">김태호</div>
+            <div class="bid-amount">1,250,000원</div>
+          </div>
+          <div class="user-row">
+            <div class="user-avatar">이</div>
+            <div class="user-name">이지수</div>
+            <div class="bid-amount">1,200,000원</div>
+          </div>
+          <div class="user-row">
+            <div class="user-avatar">박</div>
+            <div class="user-name">박민준</div>
+            <div class="bid-amount">1,150,000원</div>
+          </div>
+          <div class="user-row">
+            <div class="user-avatar">최</div>
+            <div class="user-name">최서연</div>
+            <div class="bid-amount">1,100,000원</div>
+          </div>
+          <div class="user-row">
+            <div class="user-avatar">정</div>
+            <div class="user-name">정도윤</div>
+            <div class="bid-amount">1,050,000원</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 경매 컨트롤 -->
+    <div class="auction-controls">
+      <div class="container flex-between">
+        <div>
+          <div class="label">내 잔고</div>
+          <div class="value">2,500,000원</div>
+        </div>
+        <div class="flex">
+          <input type="number" id="bidAmount" class="form-input" placeholder="입찰 금액" value="1,300,000"
+            style="width: 200px; margin-right: 10px;">
+          <button id="bidButton" class="btn">입찰하기</button>
+          <button id="buyNowButton" class="btn" style="margin-left: 10px;">즉시 구매</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 알림 모달 -->
+  <div class="modal" id="alertModal">
+    <div class="modal-content">
+      <h2 class="modal-title" id="alertTitle">입찰 성공!</h2>
+      <button class="close-modal" onclick="closeAlertModal()">&times;</button>
+      <p id="alertMessage">성공적으로 입찰하였습니다.</p>
+      <button onclick="closeAlertModal()" class="btn btn-full mt-4">확인</button>
+    </div>
+  </div>
+
+  <script>
+    // 타이머 관련 함수
+    let timeInSeconds = 5445; // 1시간 30분 45초
+
+    function updateTimer() {
+      const hours = Math.floor(timeInSeconds / 3600);
+      const minutes = Math.floor((timeInSeconds % 3600) / 60);
+      const seconds = timeInSeconds % 60;
+
+      const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      document.getElementById('timeRemaining').textContent = timeString;
+
+      // 프로그레스 바 업데이트 (5445초를 100%로 가정)
+      const percentage = (timeInSeconds / 5445) * 100;
+      document.getElementById('progressBar').style.width = `${percentage}%`;
+
+      timeInSeconds--;
+
+      if (timeInSeconds < 0) {
+        clearInterval(timerInterval);
+        showAlert('경매 종료', '경매가 종료되었습니다.');
+        setTimeout(() => {
+          window.location.href = 'lobby.html';
+        }, 3000);
+      }
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    // 입찰 및 즉시 구매 기능
+    document.getElementById('bidButton').addEventListener('click', function () {
+      const bidAmount = document.getElementById('bidAmount').value.replace(/,/g, '');
+      const currentPrice = document.getElementById('currentPrice').textContent.replace(/,/g, '');
+
+      if (parseInt(bidAmount) <= parseInt(currentPrice)) {
+        showAlert('입찰 실패', '현재 가격보다 높은 금액을 입력해주세요.');
+        return;
+      }
+
+      document.getElementById('currentPrice').textContent = parseInt(bidAmount).toLocaleString();
+      showAlert('입찰 성공', '성공적으로 입찰하였습니다.');
+
+      // 입찰 목록 업데이트 (실제로는 서버에서 처리해야 합니다)
+      const userList = document.querySelector('.user-list');
+      const newBid = document.createElement('div');
+      newBid.className = 'user-row';
+      newBid.innerHTML = `
+                <div class="user-avatar">나</div>
+                <div class="user-name">나의 입찰</div>
+                <div class="bid-amount">${parseInt(bidAmount).toLocaleString()}원</div>
+            `;
+      userList.insertBefore(newBid, userList.children[3]);
+    });
+
+    document.getElementById('buyNowButton').addEventListener('click', function () {
+      showAlert('즉시 구매 성공', '성공적으로 상품을 구매하였습니다! 마이페이지에서 확인하실 수 있습니다.');
+      setTimeout(() => {
+        window.location.href = 'lobby.html';
+      }, 2000);
+    });
+
+    // 알림 모달 관련 함수
+    function showAlert(title, message) {
+      document.getElementById('alertTitle').textContent = title;
+      document.getElementById('alertMessage').textContent = message;
+      document.getElementById('alertModal').classList.add('active');
+    }
+
+    function closeAlertModal() {
+      document.getElementById('alertModal').classList.remove('active');
+    }
+
+    // URL 파라미터에서 경매 ID 가져오기
+    function getAuctionIdFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('id');
+    }
+
+    // 페이지 로드 시 실행
+    document.addEventListener('DOMContentLoaded', function () {
+      const auctionId = getAuctionIdFromUrl();
+      console.log('현재 경매 ID:', auctionId);
+      // 여기에서 경매 ID에 따른 데이터를 불러오는 로직을 구현할 수 있습니다.
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 - 실시간 경매 사이트</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="auth-container">
+    <div class="card auth-card tilted-card">
+      <h2 class="title">회원가입</h2>
+      <form id="registerForm">
+        <div class="form-group">
+          <label class="form-label">이메일</label>
+          <input type="email" id="registerEmail" class="form-input" required placeholder="example@email.com">
+          <p class="error-text" id="registerEmailError">유효한 이메일을 입력해주세요.</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">비밀번호</label>
+          <input type="password" id="registerPassword" class="form-input" required placeholder="8자 이상 입력">
+          <p class="error-text" id="registerPasswordError">8자 이상의 비밀번호를 입력해주세요.</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">비밀번호 확인</label>
+          <input type="password" id="registerPasswordConfirm" class="form-input" required placeholder="비밀번호 재입력">
+          <p class="error-text" id="registerPasswordConfirmError">비밀번호가 일치하지 않습니다.</p>
+        </div>
+        <button type="submit" class="btn btn-full">회원가입</button>
+      </form>
+      <p class="text-center mt-4">
+        이미 계정이 있으신가요? <a href="index.html">로그인</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      let isValid = true;
+      const email = document.getElementById('registerEmail').value;
+      const password = document.getElementById('registerPassword').value;
+      const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
+
+      // 이메일 검증
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        document.getElementById('registerEmailError').classList.add('active');
+        isValid = false;
+      } else {
+        document.getElementById('registerEmailError').classList.remove('active');
+      }
+
+      // 비밀번호 검증
+      if (!password || password.length < 8) {
+        document.getElementById('registerPasswordError').classList.add('active');
+        isValid = false;
+      } else {
+        document.getElementById('registerPasswordError').classList.remove('active');
+      }
+
+      // 비밀번호 확인 검증
+      if (password !== passwordConfirm) {
+        document.getElementById('registerPasswordConfirmError').classList.add('active');
+        isValid = false;
+      } else {
+        document.getElementById('registerPasswordConfirmError').classList.remove('active');
+      }
+
+      // 모든 검증 통과 시 로그인 페이지로 이동
+      if (isValid) {
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+
+</html>

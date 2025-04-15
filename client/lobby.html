@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>경매장 로비 - Auction Hub</title>
+  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <!-- 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="container navbar-content">
+      <div class="logo">Auction Hub</div>
+      <div class="nav-links">
+        <a href="mypage.html" class="nav-link">마이페이지</a>
+        <a href="index.html" class="nav-link">로그아웃</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 페이지 컨텐츠 -->
+  <div class="container page-content">
+    <h1 class="page-title">진행중인 경매</h1>
+
+    <div class="grid grid-cols-3">
+      <!-- 경매 카드 1 -->
+      <div class="card tilted-card" onclick="showPasswordModal('auction1')">
+        <div class="card-header">
+          <i class="fas fa-gem card-icon"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">희귀 보석 경매</h3>
+          <p class="card-subtitle">다이아몬드, 루비, 에메랄드 등 희귀 보석들을 만나보세요.</p>
+
+          <div class="flex-between">
+            <span class="tag">진행중</span>
+            <span class="tag">참여자: 8명</span>
+          </div>
+
+          <div class="flex-between mt-4">
+            <div>
+              <div class="label">시작가</div>
+              <div class="value">500,000원</div>
+            </div>
+            <div>
+              <div class="label">남은시간</div>
+              <div class="value">01:30:45</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 경매 카드 2 -->
+      <div class="card tilted-card" onclick="showPasswordModal('auction2')">
+        <div class="card-header">
+          <i class="fas fa-laptop card-icon"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">전자기기 경매</h3>
+          <p class="card-subtitle">최신 노트북, 태블릿, 스마트폰 등 다양한 전자기기 경매</p>
+
+          <div class="flex-between">
+            <span class="tag">진행중</span>
+            <span class="tag">참여자: 12명</span>
+          </div>
+
+          <div class="flex-between mt-4">
+            <div>
+              <div class="label">시작가</div>
+              <div class="value">300,000원</div>
+            </div>
+            <div>
+              <div class="label">남은시간</div>
+              <div class="value">00:45:30</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 경매 카드 3 -->
+      <div class="card tilted-card" onclick="showPasswordModal('auction3')">
+        <div class="card-header">
+          <i class="fas fa-palette card-icon"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">예술품 경매</h3>
+          <p class="card-subtitle">유명 작가들의 그림, 조각상 등 다양한 예술품 경매</p>
+
+          <div class="flex-between">
+            <span class="tag">진행중</span>
+            <span class="tag">참여자: 5명</span>
+          </div>
+
+          <div class="flex-between mt-4">
+            <div>
+              <div class="label">시작가</div>
+              <div class="value">1,000,000원</div>
+            </div>
+            <div>
+              <div class="label">남은시간</div>
+              <div class="value">02:15:20</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 경매 카드 4 -->
+      <div class="card tilted-card" onclick="showPasswordModal('auction4')">
+        <div class="card-header">
+          <i class="fas fa-car card-icon"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">자동차 경매</h3>
+          <p class="card-subtitle">클래식카부터 최신 모델까지 다양한 자동차 경매</p>
+
+          <div class="flex-between">
+            <span class="tag">진행중</span>
+            <span class="tag">참여자: 15명</span>
+          </div>
+
+          <div class="flex-between mt-4">
+            <div>
+              <div class="label">시작가</div>
+              <div class="value">5,000,000원</div>
+            </div>
+            <div>
+              <div class="label">남은시간</div>
+              <div class="value">03:00:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 경매 카드 5 -->
+      <div class="card tilted-card" onclick="showPasswordModal('auction5')">
+        <div class="card-header">
+          <i class="fas fa-book card-icon"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">희귀 도서 경매</h3>
+          <p class="card-subtitle">한정판 도서, 오래된 책, 사인본 등 희귀 도서 경매</p>
+
+          <div class="flex-between">
+            <span class="tag">진행중</span>
+            <span class="tag">참여자: 3명</span>
+          </div>
+
+          <div class="flex-between mt-4">
+            <div>
+              <div class="label">시작가</div>
+              <div class="value">200,000원</div>
+            </div>
+            <div>
+              <div class="label">남은시간</div>
+              <div class="value">00:30:15</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 경매 카드 6 -->
+      <div class="card tilted-card" onclick="showPasswordModal('auction6')">
+        <div class="card-header">
+          <i class="fas fa-wine-glass card-icon"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">와인 경매</h3>
+          <p class="card-subtitle">빈티지 와인, 한정판 와인 등 고급 와인 경매</p>
+
+          <div class="flex-between">
+            <span class="tag">진행중</span>
+            <span class="tag">참여자: 7명</span>
+          </div>
+
+          <div class="flex-between mt-4">
+            <div>
+              <div class="label">시작가</div>
+              <div class="value">800,000원</div>
+            </div>
+            <div>
+              <div class="label">남은시간</div>
+              <div class="value">01:15:30</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 비밀번호 입력 모달 -->
+  <div class="modal" id="passwordModal">
+    <div class="modal-content">
+      <h2 class="modal-title">경매장 입장</h2>
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+
+      <form id="passwordForm">
+        <input type="hidden" id="auctionId" value="">
+        <div class="form-group">
+          <label class="form-label" for="password">비밀번호를 입력하세요</label>
+          <input type="password" id="password" class="form-input" required>
+          <div class="error-text" id="passwordError">비밀번호가 일치하지 않습니다.</div>
+        </div>
+
+        <button type="submit" class="btn btn-full">입장하기</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // 모달 관련 함수
+    function showPasswordModal(auctionId) {
+      document.getElementById('auctionId').value = auctionId;
+      document.getElementById('passwordModal').classList.add('active');
+      document.getElementById('password').value = '';
+      document.getElementById('passwordError').classList.remove('active');
+    }
+
+    function closeModal() {
+      document.getElementById('passwordModal').classList.remove('active');
+    }
+
+    // 비밀번호 검증 및 입장 처리
+    document.getElementById('passwordForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const auctionId = document.getElementById('auctionId').value;
+      const password = document.getElementById('password').value;
+
+      // 간단한 검증 로직 (실제로는 서버에서 처리해야 합니다)
+      if (password === '1234') {
+        // 비밀번호 일치 시 경매장으로 이동
+        window.location.href = 'auction.html?id=' + auctionId;
+      } else {
+        // 비밀번호 불일치 시 에러 메시지 표시
+        document.getElementById('passwordError').classList.add('active');
+      }
+    });
+
+    // ESC 키 누를 때 모달 닫기
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    // 모달 바깥 클릭 시 닫기
+    document.getElementById('passwordModal').addEventListener('click', function (e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+
+</html>
